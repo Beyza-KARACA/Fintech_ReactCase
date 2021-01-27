@@ -3,6 +3,8 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import imageFormatter from 'react-bootstrap-table-next';
 import React, { Component } from 'react';
 import axios from 'axios';
+import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
+import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 
 class App extends Component {
   
@@ -24,20 +26,24 @@ class App extends Component {
    this.getData();
   
 }
- 
+
   render() {
    
     const { data = [] } = this.state;
+    const keys=[];
     const columns = [
       {
       dataField: data.name,
-      text: 'Name'
+      text: 'Name',
+      filter: textFilter()
     }, {
       dataField: data.caption,
-      text: 'Caption'
+      text: 'Caption',
+      filter: textFilter()
     }, {
       dataField: data.region,
       text: 'Region',
+      filter: textFilter()
     },
   {
     dataField: data.flag,
@@ -45,10 +51,13 @@ class App extends Component {
     dataFormat:imageFormatter
   }
   ];
-
+  for(var i=0;i<250;i++)
+  {
+    keys.push(i);
+  }
     return (
-      <div>
-        <BootstrapTable keyField={this.state.data.name} data={this.state.data} striped={true} hover={true} columns={columns}>
+      <div responsive='sm'>
+        <BootstrapTable keyField={keys} data={data} striped={true} hover={true} columns={columns} filter={ filterFactory() }>
   </BootstrapTable>
      
       </div>
