@@ -1,4 +1,3 @@
-
 import Table from 'react-bootstrap/Table';
 import BootstrapTable from 'react-bootstrap-table-next';
 
@@ -68,4 +67,3 @@ class App extends Component {
 }
 
 export default App;
-
